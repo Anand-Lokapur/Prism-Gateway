@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: prism
+  main:
+    web-application-type: reactive
+
+server:
+  port: 8080
+
+prism:
+  admin-token: ${PRISM_ADMIN_TOKEN:prism-admin-demo-token}
+  upstream-timeout-ms: 5000
+  storage-path: ./prism-state
+  retry:
+    max-attempts: 3
+    initial-backoff-ms: 200
+    backoff-multiplier: 2.0
+  data-paths:
+    pricing: ../prism-capstone/data/model_pricing.json
+    seed-keys: ../prism-capstone/data/seed_keys.json
+    gateway-config: ../prism-capstone/data/gateway_config.sample.json
+  open-router:
+    api-key: ${OPENROUTER_API_KEY:}
+    base-url: ${OPENROUTER_BASE_URL:https://openrouter.ai/api/v1}
+    model: ${OPENROUTER_MODEL:}
+    smart-model: ${OPENROUTER_SMART_MODEL:}
